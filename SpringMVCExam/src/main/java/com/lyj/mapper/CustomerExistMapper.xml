@@ -39,5 +39,25 @@
 		select count(*) from customer;
 	</select>
 	
+	<delete id="deleteCustomer" parameterType="Integer">
+
+	delete from customer
+	where
+	customer_id=#{id};
+		
+	</delete>
+	
+	<delete id="deleteRental" parameterType="Integer">
+	delete from rental
+	where
+	customer_id=#{id}
+	</delete>
+	
+	<delete id="deletePayment" parameterType="Integer">
+	delete from payment
+	where
+	customer_id=#{id};
+	</delete>
+	
 
 </mapper>

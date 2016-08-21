@@ -17,4 +17,6 @@ public interface CustomerService {
 	
 	public int customerCount() throws Exception;
 	
+	public void deleteCustomer(Integer id) throws Exception;
+	
 }

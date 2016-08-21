@@ -17,4 +17,10 @@ public interface CustomerExistMapper {
 	
 	int customerCount() throws Exception;
 	
+	void deleteCustomer(Integer id) throws Exception;
+	
+	void deleteRental(Integer id) throws Exception;
+	
+	void deletePayment(Integer id) throws Exception;
+	
 }

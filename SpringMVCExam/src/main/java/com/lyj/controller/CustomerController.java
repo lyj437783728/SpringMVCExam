@@ -130,12 +130,22 @@ public class CustomerController {
 		
 		System.out.println("Integer start = "+start);
 		
+		
 		List<MoreCustomer> moreCustomerList = customerService.getMoreCustomerList(start);
 		
 		System.out.println(moreCustomerList.size());
 		
 		return moreCustomerList;
 		
+		
+	}
+	
+	@RequestMapping("/deletCustomer")
+	public String deletCustomer(Integer id,String spageNow) throws Exception{
+		
+		customerService.deleteCustomer(id);
+		
+		return "redirect:index.action";
 		
 	}
 	

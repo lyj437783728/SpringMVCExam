@@ -38,7 +38,7 @@ $(document).ready(function(){
 				"<td><a href=\"${pageContext.request.contextPath }/updateCustomerJsp.action?customerId="+customer.customerId+
 					"&firstName="+customer.firstName+"&lastName="+customer.lastName+"&email="+customer.email+
 					"&addressId="+customer.addressId+"\""+
-					">编辑</a> | <a href=\"#\">删除</a></td>"+	
+					">编辑</a> | <a href=\"deletCustomer.action?id="+customer.customerId+"\""+">删除</a></td>"+	
 					"<td>"+customer.firstName+"</td>"+
 					"<td>"+customer.lastName+"</td>"+
 					"<td>"+customer.address+"</td>"+
@@ -59,7 +59,7 @@ $(document).ready(function(){
 <p align="right"><a href="${pageContext.request.contextPath }/logout.action"><input type="button" value="退出登录"/></a></p>
 <a href="${pageContext.request.contextPath }/addCustmoerJsp.action"><input type="button" value="新建"/></a><br>
 
-
+<input id="pn" type="hidden" value="${pageNow }" />
 
 <table class="table table-striped" align="center" border="1px">
 	<tr>
@@ -77,7 +77,7 @@ $(document).ready(function(){
 			<td><a href="${pageContext.request.contextPath }/updateCustomerJsp.action?customerId=${customer.customerId }
 			&firstName=${customer.firstName }&lastName=${customer.lastName }&email=${customer.email }
 			&addressId=${customer.addressId}"
-			>编辑</a> | <a href="#">删除</a></td>	
+			>编辑</a> | <a href="deletCustomer.action?id=${customer.customerId }">删除</a></td>	
 			<td>${customer.firstName }</td>
 			<td>${customer.lastName }</td>
 			<td>${customer.address }</td>

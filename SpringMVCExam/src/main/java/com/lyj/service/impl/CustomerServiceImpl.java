@@ -57,6 +57,13 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerExistMapper.customerCount();
 	}
 
+	public void deleteCustomer(Integer id) throws Exception {
+		
+		customerExistMapper.deleteRental(id);
+		customerExistMapper.deletePayment(id);
+		customerExistMapper.deleteCustomer(id);
+	}
+
 	
 
 	
