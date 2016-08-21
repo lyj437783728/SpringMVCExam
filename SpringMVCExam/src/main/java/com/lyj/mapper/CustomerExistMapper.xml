@@ -18,10 +18,11 @@
 		select count(*) from customer where first_name = #{firstName}
 	</select>
 	
-	<select id="getMoreCustomerList" resultMap="BaseResultMap">
+	<select id="getMoreCustomerList" parameterType="Integer" resultMap="BaseResultMap">
 		select customer.*,address.address from customer,address 
 		where customer.address_id = address.address_id
         order by customer_id
+        limit #{start},10
 	</select>
 	
 	<insert id="insertCustomer" parameterType="com.lyj.po.Customer" >
@@ -33,6 +34,10 @@
 		update customer set first_name=#{firstName},last_name=#{lastName},email=#{email},address_id=#{addressId},last_update=now()
 		where customer_id = #{customerId}
 	</update>
+	
+	<select id="customerCount" resultType="Integer">
+		select count(*) from customer;
+	</select>
 	
 
 </mapper>

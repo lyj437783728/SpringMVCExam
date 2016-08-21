@@ -9,9 +9,12 @@ public interface CustomerExistMapper {
 
 	int hasCustomer(Customer customer) throws Exception;
 	
-	List<MoreCustomer> getMoreCustomerList() throws Exception;
+	List<MoreCustomer> getMoreCustomerList(Integer start) throws Exception;
 	
 	int insertCustomer(Customer customer) throws Exception;
 	
 	int updateCustomer(Customer customer) throws Exception;
+	
+	int customerCount() throws Exception;
+	
 }

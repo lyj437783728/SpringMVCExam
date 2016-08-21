@@ -9,10 +9,12 @@ public interface CustomerService {
 
 	public boolean hasCustomer(Customer customer) throws Exception;
 	
-	List<MoreCustomer> getMoreCustomerList() throws Exception;
+	List<MoreCustomer> getMoreCustomerList(Integer start) throws Exception;
 	
 	public boolean insertCustomer(Customer customer) throws Exception;
 	
 	public boolean updateCustomer(Customer customer) throws Exception;
+	
+	public int customerCount() throws Exception;
 	
 }

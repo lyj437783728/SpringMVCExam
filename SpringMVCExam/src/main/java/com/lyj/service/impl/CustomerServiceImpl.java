@@ -26,9 +26,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return b;
 	}
 
-	public List<MoreCustomer> getMoreCustomerList() throws Exception {
+	public List<MoreCustomer> getMoreCustomerList(Integer start) throws Exception {
 		
-		return customerExistMapper.getMoreCustomerList();
+		return customerExistMapper.getMoreCustomerList(start);
 		
 	}
 
@@ -51,6 +51,10 @@ public class CustomerServiceImpl implements CustomerService {
 			b=true;
 		}
 		return b;
+	}
+
+	public int customerCount() throws Exception {
+		return customerExistMapper.customerCount();
 	}
 
 	

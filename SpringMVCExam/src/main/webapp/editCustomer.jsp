@@ -66,7 +66,7 @@
 			</td>
 		</tr>
 	</table>
-	<input type="submit" value="添加" onclick="return check(this);" />
+	<input type="submit" value="修改" onclick="return check(this);" />
 </form>
 
 </body>

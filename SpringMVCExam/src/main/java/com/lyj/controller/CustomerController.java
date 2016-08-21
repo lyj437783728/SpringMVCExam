@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lyj.po.Address;
@@ -88,16 +89,55 @@ public class CustomerController {
 	
 	
 	@RequestMapping("/index")
-	public ModelAndView index() throws Exception{
+	public ModelAndView index(String spageNow) throws Exception{
 		
-		List<MoreCustomer> moreCustomerList = customerService.getMoreCustomerList();
+		if(spageNow == null){
+			System.out.println("pageNow为空");
+			spageNow = "1";
+		}
+		
+		int customerCount = customerService.customerCount();
+		int pageCount = customerCount/10;
+		if(customerCount%10 != 0){
+			pageCount++;
+		}
+		
+		Integer pageNow = Integer.parseInt(spageNow);
+		Integer start = (pageNow-1)*10;
+		
+		List<MoreCustomer> moreCustomerList = customerService.getMoreCustomerList(start);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("moreCustomerList", moreCustomerList);
+		modelAndView.addObject("pageCount", pageCount);
 		modelAndView.setViewName("index");
 		
 		return modelAndView;
 		
 	}
+	
+	
+	@RequestMapping("/showCustomerByPage")
+	public @ResponseBody List<MoreCustomer> showCustomerByPage(String spageNow) throws Exception{
+		
+		if(spageNow == null){
+			System.out.println("pageNow为空");
+			spageNow = "1";
+		}
+			
+		Integer pageNow = Integer.parseInt(spageNow);
+		Integer start = (pageNow-1)*10;
+		
+		System.out.println("Integer start = "+start);
+		
+		List<MoreCustomer> moreCustomerList = customerService.getMoreCustomerList(start);
+		
+		System.out.println(moreCustomerList.size());
+		
+		return moreCustomerList;
+		
+		
+	}
+	
 
 }
