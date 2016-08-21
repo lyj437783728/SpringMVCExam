@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyj.mapper.CustomerExistMapper">
+	<resultMap id="BaseResultMap" type="com.lyj.po.MoreCustomer" >
+    <id column="customer_id" property="customerId" jdbcType="SMALLINT" />
+    <result column="store_id" property="storeId" jdbcType="TINYINT" />
+    <result column="first_name" property="firstName" jdbcType="VARCHAR" />
+    <result column="last_name" property="lastName" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="address_id" property="addressId" jdbcType="SMALLINT" />
+    <result column="active" property="active" jdbcType="BIT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="last_update" property="lastUpdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+	
+	<select id="hasCustomer" parameterType="com.lyj.po.Customer"
+		resultType="Integer">
+		select count(*) from customer where first_name = #{firstName}
+	</select>
+	
+	<select id="getMoreCustomerList" resultMap="BaseResultMap">
+		select customer.*,address.address from customer,address 
+		where customer.address_id = address.address_id
+        order by customer_id
+	</select>
+	
+	<insert id="insertCustomer" parameterType="com.lyj.po.Customer" >
+		insert into customer(store_id,first_name,last_name,email,address_id,create_date)
+		values(1,#{firstName},#{lastName},#{email},#{addressId},now())
+	</insert>
+	
+	<update id="updateCustomer" parameterType="com.lyj.po.Customer">
+		update customer set first_name=#{firstName},last_name=#{lastName},email=#{email},address_id=#{addressId},last_update=now()
+		where customer_id = #{customerId}
+	</update>
+	
+
+</mapper>
